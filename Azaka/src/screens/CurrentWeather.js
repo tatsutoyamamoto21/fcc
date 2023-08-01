@@ -4,11 +4,11 @@ import { Feather } from '@expo/vector-icons';
 import RowText from '../components/RowText';
 import { WeatherType } from '../utilities/WeatherType';
 
-const CurrentWeather = () => {
+const CurrentWeather = ({ weatherData }) => {
   const {
     wrapper,
     container,
-    temp,
+    tempStyle,
     feels,
     highLowWrapper,
     highLow,
@@ -16,23 +16,25 @@ const CurrentWeather = () => {
     description,
     message,
   } = styles;
+  const { main: { temp, feels_like, temp_max, temp_min }, weather } = weatherData
+  const weatherCondition = weather[0].main
   return (
-    <SafeAreaView style = {wrapper}>
+    <SafeAreaView style = {[wrapper, { backgroundColor: WeatherType[weatherCondition].backgroundColor }]}>
       <View style = {container}>
-        <Feather name="sun" size={100} color="black" />
-        <Text style={temp}>6</Text>
-        <Text style={feels}>Feels like 5</Text>
+        <Feather name={WeatherType[weatherCondition].icon} size={100} color="white" />
+        <Text style={tempStyle}>{temp}</Text>
+        <Text style={feels}>{`Feels like ${feels_like}`}</Text>
         <RowText
-          textOne={'High: 8 '}
-          textTwo={'Low: 6'}
+          textOne={`High: ${temp_max} `}
+          textTwo={`Low: ${temp_min}`}
           containerStyle={highLowWrapper}
           textOneStyle={highLow}
           textTwoStyle={highLow}
         />
       </View>
       <RowText
-        textOne={'Its sunny'}
-        textTwo={WeatherType['Thunderstorm'].message}
+        textOne={weather[0].description}
+        textTwo={WeatherType[weatherCondition].message}
         containerStyle={bodyWrapper}
         textOneStyle={description}
         textTwoStyle={message}
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'pink',
     flex: 1,
   },
-  temp: {
+  tempStyle: {
     color: 'black',
     fontSize: 48,
   },
