@@ -1,3 +1,3 @@
 # ShinSen - Summer Food Tracker Project
 
-Two guys honing their programming skills.
+Two guys learning and honing their programming skills (react native).
