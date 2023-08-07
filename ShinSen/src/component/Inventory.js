@@ -6,6 +6,7 @@ const Inventory = () => {
     <View>
       <Text>
         Hello World Dev
+        Hello World Tats
       </Text>
     </View>
   )
