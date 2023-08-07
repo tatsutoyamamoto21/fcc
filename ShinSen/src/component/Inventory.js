@@ -5,7 +5,7 @@ const Inventory = () => {
   return (
     <View>
       <Text>
-        Hello World
+        Hello World Tats
       </Text>
     </View>
   )
