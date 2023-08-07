@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import { View, Text } from 'react-native';
 
 const Calendar = () => {
   return (
@@ -8,7 +8,7 @@ const Calendar = () => {
         Hello World This is Calendar
       </Text>
     </View>
-  )
-}
+  );
+};
 
-export default Calendar
+export default Calendar;
