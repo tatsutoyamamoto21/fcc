@@ -1,13 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Inventory from './src/component/Inventory';
+import Inventory from './src/screens/Inventory';
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
       <Inventory />
-    </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -18,3 +16,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App
