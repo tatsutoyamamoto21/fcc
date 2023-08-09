@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Inventory from './src/screens/Inventory';
+import Calendar from './src/screens/Calendar';
 
 const App = () => {
   return (
-      <Inventory />
+      <Calendar />
   )
 }
 
