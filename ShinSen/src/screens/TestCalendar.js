@@ -1,13 +1,18 @@
-import { useCallback } from 'react'
+import { useCallback, useRef } from 'react'
 import React from 'react'
 import { CalendarProvider, AgendaList, ExpandableCalendar } from 'react-native-calendars'
 import AgendaItem from '../component/AgendaItem';
 import { View } from 'react-native';
+import isEmpty from 'lodash/isEmpty';
 
 const today = new Date().toISOString().split('T')[0];
 const fastDate = getPastDate(5);
 const futureDates = getFutureDates(12);
 const dates = [fastDate, today].concat(futureDates);
+
+console.log(fastDate)
+console.log(futureDates)
+console.log(dates)
 
 function getFutureDates(numberOfDays: number) {
   const array: string[] = [];
@@ -120,6 +125,20 @@ export const agendaItems = [
   }
 ];
 
+export function getMarkedDates( props ) {
+  const marked: MarkedDates = {};
+
+  agendaItems.forEach(item => {
+    // NOTE: only mark dates with data
+    if (item.data && item.data.length > 0 && !isEmpty(item.data[0])) {
+      marked[item.title] = {marked: true};
+    } else {
+      marked[item.title] = {disabled: true};
+    }
+  });
+  return marked;
+}
+
 const ITEMS = agendaItems;
 
 const TestCalendar = () => {
@@ -128,9 +147,11 @@ const TestCalendar = () => {
     return <AgendaItem item={item}/>;
   }, []);
 
+  const marked = useRef(getMarkedDates())
+
   return (
       <CalendarProvider showTodayButton date={'2023-08-10'}>
-        <ExpandableCalendar />
+        <ExpandableCalendar markedDates={marked.current} />
         <AgendaList
           sections={ITEMS}
           renderItem={renderItem}

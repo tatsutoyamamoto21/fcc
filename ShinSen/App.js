@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import Inventory from './src/screens/Inventory';
-import Calendar from './src/screens/Calendar';
-import TestCalendar from './src/screens/TestCalendar';
+import Tabs from './src/component/Tabs'
+import { NavigationContainer } from '@react-navigation/native';
 
 const App = () => {
   return (
-      <TestCalendar />
+    <NavigationContainer>
+      <Tabs />
+    </NavigationContainer>
   )
 }
 

@@ -2,8 +2,6 @@ import isEmpty from 'lodash/isEmpty';
 import React, {useCallback} from 'react';
 import {StyleSheet, Alert, View, Text, TouchableOpacity, Button} from 'react-native';
 
-
-
 interface ItemProps {
   item: any;
 }
