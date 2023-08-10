@@ -38,13 +38,12 @@ const Calendar = () => {
     }, 1000);
   };
 
-
   return (
     <SafeAreaView style={{flex: 1}}>
       <Agenda
         items={items}
         loadItemsForMonth={loadItems}
-        selected={'2017-05-16'}
+        selected={'2023-08-10'}
         // renderItem={this.renderItem}
         // renderEmptyDate={this.renderEmptyDate}
         // rowHasChanged={this.rowHasChanged}
