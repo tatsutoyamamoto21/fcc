@@ -150,7 +150,7 @@ const TestCalendar = () => {
   const marked = useRef(getMarkedDates())
 
   return (
-      <CalendarProvider showTodayButton date={'2023-08-10'}>
+      <CalendarProvider showTodayButton date={'2023-08-02'}>
         <ExpandableCalendar markedDates={marked.current} />
         <AgendaList
           sections={ITEMS}
