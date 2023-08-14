@@ -11,15 +11,23 @@ const ItemInfo = ( props ) => {
         transparent={true}
         visible={init}
       >
-        <View>
+        <View style={styles.centerView}>
           <View style={styles.modalView}>
-            <Text>{text}</Text>
-            <TouchableHighlight
-              style={styles.press}
-              onPress={setModalVisibility}
-            >
-              <Text>Close</Text>
-            </TouchableHighlight>
+            <Text style={styles.text}>{text}</Text>
+            <View style={styles.presses}>
+              <TouchableHighlight
+                style={styles.pressEdit}
+                onPress={setModalVisibility}
+              >
+                <Text>Edit</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.pressClose}
+                onPress={setModalVisibility}
+              >
+                <Text>Close</Text>
+              </TouchableHighlight>
+            </View>
           </View>
         </View>
       </Modal>
@@ -29,17 +37,37 @@ const ItemInfo = ( props ) => {
 }
 
 const styles=StyleSheet.create({
+  centerView: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   modalView: {
-    margin: 20,
+    alignItems: 'stretch',
+    margin: 10,
     backgroundColor: 'white',
     borderRadius: 20,
     padding: 35,
-    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+
   },
-  press: {
+  text:{
+    alignSelf: 'center',
+  },
+  presses: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  pressEdit: {
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+  },
+  pressClose: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    backgroundColor: '#00BBF2',
+
   }
 })
 
