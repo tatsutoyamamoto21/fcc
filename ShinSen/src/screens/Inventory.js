@@ -1,16 +1,23 @@
 import React from 'react';
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { View, SafeAreaView, StyleSheet, FlatList } from 'react-native';
 import ItemButton from '../component/ItemButton';
+
+const arr = Array.apply(null, Array(10)).map((v, i) => {
+  return { id: i };
+});
 
 const Inventory = () => {
   return (
     <SafeAreaView style={styles.wrapper}>
-      <View style={styles.container}>
-        <ItemButton
-          text={'This is a button.'}
-          col={'red'}
-        />
-      </View>
+      <FlatList
+        data={arr}
+        renderItem={({ item }) => (
+          <View style={styles.container}>
+            <ItemButton text={item.id}/>
+          </View>
+        )}
+        numColumns={3}
+      />
     </SafeAreaView>
 
   );
@@ -21,7 +28,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    alignContent: 'flex-end',
+    flex: 1,
+    margin: 1
   }
 })
 

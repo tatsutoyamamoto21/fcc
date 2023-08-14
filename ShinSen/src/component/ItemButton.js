@@ -1,23 +1,32 @@
-import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import ItemInfo from './ItemInfo';
+
+const scrWidth = Dimensions.get('window').width;
 
 const ItemButton = ( props ) => {
-  const { text, col } = props
+  const [modalVisible, setModalVisible] = useState(false)
+  const { text } = props;
   return (
     <View>
-      <Button
-        title={text}
-        onPress={() => {
-          console.log('Button press.')
-        }}
-        color={col}
-      />
+      <TouchableOpacity 
+        onPress={() => setModalVisible(true)}>
+        <View style={styles.item}>
+          <Text>{text}</Text>
+        </View>
+      </TouchableOpacity>
+      <ItemInfo text={text} init={modalVisible} setModalVisibility={()=>{setModalVisible(preState => preState = !preState)}}/>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-
+  item: {
+    width: (scrWidth-6) * 1/3,
+    aspectRatio: 1,
+    backgroundColor: 'white',
+    borderRadius: 10,
+  },
 });
 
 export default ItemButton;
