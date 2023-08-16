@@ -32,7 +32,6 @@ const ItemInfo = ( props ) => {
         </View>
       </Modal>
     </View>
-
   )
 }
 
@@ -48,9 +47,8 @@ const styles=StyleSheet.create({
     borderRadius: 20,
     padding: 35,
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
-
   },
-  text:{
+  text: {
     alignSelf: 'center',
   },
   presses: {
@@ -61,14 +59,14 @@ const styles=StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
   },
   pressClose: {
     borderRadius: 20,
     padding: 10,
     elevation: 2,
     backgroundColor: '#00BBF2',
-
-  }
-})
+  },
+});
 
 export default ItemInfo
