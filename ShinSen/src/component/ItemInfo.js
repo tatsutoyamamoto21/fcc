@@ -5,33 +5,31 @@ const ItemInfo = ( props ) => {
   const { text, init, setModalVisibility } = props
 
   return (
-    <View>
-      <Modal 
-        animationType='slide'
-        transparent={true}
-        visible={init}
-      >
-        <View style={styles.centerView}>
-          <View style={styles.modalView}>
-            <Text style={styles.text}>{text}</Text>
-            <View style={styles.presses}>
-              <TouchableHighlight
-                style={styles.pressEdit}
-                onPress={setModalVisibility}
-              >
-                <Text>Edit</Text>
-              </TouchableHighlight>
-              <TouchableHighlight
-                style={styles.pressClose}
-                onPress={setModalVisibility}
-              >
-                <Text>Close</Text>
-              </TouchableHighlight>
-            </View>
+    <Modal
+      animationType='fade'
+      transparent={true}
+      visible={init}
+    >
+      <View style={styles.centerView}>
+        <View style={styles.modalView}>
+          <Text style={styles.text}>{text}</Text>
+          <View style={styles.presses}>
+            <TouchableHighlight
+              style={styles.pressEdit}
+              onPress={setModalVisibility}
+            >
+              <Text>Edit</Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              style={styles.pressClose}
+              onPress={setModalVisibility}
+            >
+              <Text>Close</Text>
+            </TouchableHighlight>
           </View>
         </View>
-      </Modal>
-    </View>
+      </View>
+    </Modal>
   )
 }
 
@@ -39,6 +37,7 @@ const styles=StyleSheet.create({
   centerView: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   modalView: {
     alignItems: 'stretch',
@@ -46,7 +45,7 @@ const styles=StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 20,
     padding: 35,
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    backgroundColor: 'white',
   },
   text: {
     alignSelf: 'center',

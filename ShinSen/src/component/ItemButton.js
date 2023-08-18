@@ -9,7 +9,7 @@ const ItemButton = ( props ) => {
   const { text } = props;
   return (
     <View>
-      <TouchableOpacity 
+      <TouchableOpacity
         onPress={() => setModalVisible(true)}>
         <View style={styles.item}>
           <Text>{text}</Text>
