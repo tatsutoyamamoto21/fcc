@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(0,0,0, .4)',
     shadowOffset: { height: 1, width: 1 }, // IOS
     shadowOpacity: 1, // IOS
-    shadowRadius: 5, //IOS
+    shadowRadius: 10, //IOS
     width: 60,
     height: 60,
     borderRadius: 50,
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     elevation: 8,
   },
+
 })
 
 export default Main;
