@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { StyleSheet, Modal, View, Text, Pressable, TouchableHighlight } from 'react-native'
+import React from 'react';
+import { StyleSheet, Modal, View, Text, TouchableHighlight } from 'react-native';
 
 const ItemInfo = ( props ) => {
-  const { text, init, setModalVisibility } = props
+  const { text, init, setModalVisibility } = props;
 
   return (
     <Modal
@@ -12,26 +12,31 @@ const ItemInfo = ( props ) => {
     >
       <View style={styles.centerView}>
         <View style={styles.modalView}>
+
           <Text style={styles.text}>{text}</Text>
+
           <View style={styles.presses}>
+
             <TouchableHighlight
               style={styles.pressEdit}
               onPress={setModalVisibility}
             >
               <Text>Edit</Text>
             </TouchableHighlight>
+
             <TouchableHighlight
               style={styles.pressClose}
               onPress={setModalVisibility}
             >
               <Text>Close</Text>
             </TouchableHighlight>
+
           </View>
         </View>
       </View>
     </Modal>
-  )
-}
+  );
+};
 
 const styles=StyleSheet.create({
   centerView: {
@@ -68,4 +73,4 @@ const styles=StyleSheet.create({
   },
 });
 
-export default ItemInfo
+export default ItemInfo;
