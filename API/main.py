@@ -23,7 +23,7 @@ def connect():
 def post():
     pass
 
-@app.route("/")
+@app.route("/get-all-data")
 def get():
     pass
 
