@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
   addButton: {
     position: 'absolute',
     zIndex: 11,
-    right: 30,
-    bottom: 110,
+    right: '5%',
+    bottom: '11%',
     backgroundColor: '#00BBF2',
     shadowColor: 'rgba(0,0,0, .4)',
     shadowOffset: { height: 1, width: 1 }, // IOS
