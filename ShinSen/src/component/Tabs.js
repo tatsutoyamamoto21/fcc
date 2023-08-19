@@ -12,8 +12,8 @@ const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: 'black',
-        tabBarInactiveTintColor: 'lightblue',
+        tabBarActiveTintColor: '#00BBF2',
+        tabBarInactiveTintColor: 'grey',
         headerStyle: {
           backgroundColor: 'white',
         },
@@ -26,7 +26,7 @@ const Tabs = () => {
       <Tab.Screen name={'Calendar'}
         options={{
           tabBarIcon: ({ focused }) => (
-            <Feather name="calendar" size={24} color={focused ? "black" : 'lightblue'} />
+            <Feather name="calendar" size={24} color={focused ? "#00BBF2" : 'grey'} />
           ),
         }}
       >
@@ -35,7 +35,7 @@ const Tabs = () => {
       <Tab.Screen name={'Inventory'}
         options={{
           tabBarIcon: ({ focused }) => (
-            <MaterialCommunityIcons name="fridge-outline" size={24} color={focused ? "black" : 'lightblue'} />
+            <MaterialCommunityIcons name="fridge-outline" size={24} color={focused ? "#00BBF2" : 'grey'} />
           ),
         }}
       >

@@ -1,12 +1,9 @@
-import Tabs from './src/component/Tabs'
-import { NavigationContainer } from '@react-navigation/native';
+import Main from "./src/Main";
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Tabs />
-    </NavigationContainer>
-  )
-}
+    <Main></Main>
+  );
+};
 
-export default App
+export default App;
