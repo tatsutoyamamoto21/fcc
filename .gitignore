@@ -37,3 +37,6 @@ yarn-error.*
 # python env
 env/
 API/.env
+
+# vscode
+.vscode/
