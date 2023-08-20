@@ -22,10 +22,6 @@ const AddItem = ( props ) => {
   const [mode, setMode] = useState('date');
   const [isBestBefore, setIsBestBefore] = useState(true);
 
-  const changeToggle = ( bool ) => {
-
-  };
-
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setDate(currentDate);
@@ -62,7 +58,7 @@ const AddItem = ( props ) => {
             </View>
           </View>
 
-          <ScrollView style={styles.container}>
+          <ScrollView>
 
             <View style={styles.inputContainer}>
               <TextInput

@@ -5,23 +5,22 @@ import Tabs from './component/Tabs';
 import AddItem from './component/AddItem';
 
 const Main = () => {
+  const [showAdd, setShowAdd] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <NavigationContainer>
       <TouchableOpacity
-        style={styles.addButton}
+        style={showAdd ? styles.addButton : styles.hiddenButton}
         onPress={() => setModalVisible(true)}
       >
         <Text style={styles.addButtonText}>+</Text>
       </TouchableOpacity>
-      <AddItem 
-        init={modalVisible}
-        setModalVisibility={
-          ()=>{setModalVisible(preState => preState = !preState)}
-        }
+      <AddItem
+        init={modalVisible} 
+        setModalVisibility={()=>{setModalVisible(preState => preState = !preState)}}
       />
-      <Tabs />
+      <Tabs showAdd={showAdd} setShowAdd={setShowAdd}/>
     </NavigationContainer>
   );
 };

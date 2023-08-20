@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Modal, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Modal, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import AddItem from './AddItem';
+
+const width = Dimensions.get('window').width;
 
 const ItemInfo = ( props ) => {
   const { text, init, setModalVisibility } = props;
@@ -55,14 +57,15 @@ const styles=StyleSheet.create({
   centerView: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalView: {
+    alignSelf: 'center',
     alignItems: 'stretch',
-    margin: 10,
+    width: width*0.9,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
+    padding: 30,
   },
   text: {
     alignSelf: 'center',

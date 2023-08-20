@@ -1,4 +1,5 @@
 import { React, useCallback, useRef } from 'react'
+import { View } from 'react-native'
 import isEmpty from 'lodash/isEmpty';
 import { CalendarProvider, AgendaList, ExpandableCalendar } from 'react-native-calendars'
 import AgendaItem from '../component/AgendaItem';
@@ -148,13 +149,13 @@ const Calendar = () => {
   const marked = useRef(getMarkedDates())
 
   return (
-      <CalendarProvider showTodayButton date={ITEMS[1]?.title}>
-        <ExpandableCalendar markedDates={marked.current} />
-        <AgendaList
-          sections={ITEMS}
-          renderItem={renderItem}
-        />
-      </CalendarProvider>
+    <CalendarProvider showTodayButton date={ITEMS[1]?.title}>
+      <ExpandableCalendar markedDates={marked.current} />
+      <AgendaList
+        sections={ITEMS}
+        renderItem={renderItem}
+      />
+    </CalendarProvider>
   )
 }
 
