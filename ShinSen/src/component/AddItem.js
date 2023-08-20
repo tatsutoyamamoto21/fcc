@@ -9,7 +9,6 @@ import {
   ScrollView,
   TextInput,
 } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const width = Dimensions.get('window').width;
@@ -51,11 +50,17 @@ const AddItem = ( props ) => {
               onPress={setModalVisibility}
               style={styles.backButton}
             >
-              <AntDesign name="left" size={30} color="grey" />
+              <Text>Close</Text>
             </TouchableOpacity>
             <View>
               <Text style={styles.headerText}>{`${editMode ? 'Edit' : 'Add'} Item`}</Text>
             </View>
+            <TouchableOpacity
+              onPress={setModalVisibility}
+              style={styles.doneButton}
+            >
+              <Text>Done</Text>
+            </TouchableOpacity>
           </View>
 
           <ScrollView>
@@ -118,24 +123,34 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
   modalView: {
-    width: '100%',
-    height: '100%',
-    marginTop: '25%',
+    width: '90%',
+    height: '90%',
+    alignSelf: 'center',
     borderRadius: 10,
-    backgroundColor: 'white',
+    backgroundColor: 'rgb(250,250,250)',
   },
   header: {
     flexDirection: 'row',
-    width: width,
+    width: 'auto',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
     borderBottomColor: 'lightgrey',
     borderBottomWidth: StyleSheet.hairlineWidth,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
   backButton: {
     position: 'absolute',
     zIndex: 11,
-    left: 10,
+    left: 15,
+    borderRadius: 10,
+    marginVertical: 15,
+  },
+  doneButton: {
+    position: 'absolute',
+    zIndex: 11,
+    right: 15,
     borderRadius: 10,
     marginVertical: 15,
   },
