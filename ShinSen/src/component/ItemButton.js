@@ -15,7 +15,11 @@ const ItemButton = ( props ) => {
           <Text>{text}</Text>
         </View>
       </TouchableOpacity>
-      <ItemInfo text={text} init={modalVisible} setModalVisibility={()=>{setModalVisible(preState => preState = !preState)}}/>
+      <ItemInfo
+        text={text}
+        init={modalVisible}
+        setModalVisibility={()=>{setModalVisible(preState => preState = !preState)}}
+      />
     </View>
   );
 };

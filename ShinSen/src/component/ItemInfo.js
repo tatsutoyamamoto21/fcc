@@ -16,7 +16,6 @@ const ItemInfo = ( props ) => {
           <Text style={styles.text}>{text}</Text>
 
           <View style={styles.presses}>
-
             <TouchableHighlight
               style={styles.pressEdit}
               onPress={setModalVisibility}
@@ -30,7 +29,6 @@ const ItemInfo = ( props ) => {
             >
               <Text>Close</Text>
             </TouchableHighlight>
-
           </View>
         </View>
       </View>
@@ -50,7 +48,6 @@ const styles=StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 20,
     padding: 35,
-    backgroundColor: 'white',
   },
   text: {
     alignSelf: 'center',
