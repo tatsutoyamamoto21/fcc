@@ -16,8 +16,10 @@ const Main = () => {
         <Text style={styles.addButtonText}>+</Text>
       </TouchableOpacity>
       <AddItem 
-        init={modalVisible} 
-        setModalVisibility={()=>{setModalVisible(preState => preState = !preState)}}
+        init={modalVisible}
+        setModalVisibility={
+          ()=>{setModalVisible(preState => preState = !preState)}
+        }
       />
       <Tabs />
     </NavigationContainer>
