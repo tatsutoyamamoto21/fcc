@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
-  Button,
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -21,6 +20,11 @@ const AddItem = ( props ) => {
   const [text, setText] = useState(title);
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
+  const [isBestBefore, setIsBestBefore] = useState(true);
+
+  const changeToggle = ( bool ) => {
+
+  };
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
@@ -58,44 +62,51 @@ const AddItem = ( props ) => {
             </View>
           </View>
 
-          <ScrollView style={styles.scrollView}>
-            <View style={styles.body}>
+          <ScrollView style={styles.container}>
 
-              <View style={styles.InputContainer}>
-                <TextInput
-                  style={styles.ItemNameInput}
-                  value={text}
-                  mode={mode}
-                  onChangeText={setText}
-                  placeholder='Item Name'
-                />
-
-                <View style={styles.DateContainer}>
-
-                  <Text style={styles.DatePromptText}>Notification Data</Text>
-
-                  <DateTimePicker
-                    testID="dateTimePicker"
-                    value={date}
-                    onChange={onChange}
-                    minimumDate={new Date()}
-                    style={styles.datePicker}
-                  />
-
-                </View>
-
-                <TouchableOpacity onPress={sendInfo}>
-                  <View style={styles.saveButton}>
-                    <Text style={{color: 'white', alignSelf: 'center'}}>Save</Text>
-                  </View>
-                </TouchableOpacity>
-
-
-                <Text>Testing text</Text>
-              </View>
-
+            <View style={styles.inputContainer}>
+              <TextInput
+                style={styles.itemNameInput}
+                value={text}
+                mode={mode}
+                onChangeText={setText}
+                placeholder='Item Name'
+              />
             </View>
 
+            <View style={styles.dateType}>
+              <TouchableOpacity
+                style={isBestBefore === true ? styles.activeToggle : styles.inactiveToggle}
+                onPress={() => setIsBestBefore(true)}
+              >
+                <Text style={styles.toggleText}>Best Before</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={isBestBefore === false ? styles.activeToggle : styles.inactiveToggle}
+                onPress={() => setIsBestBefore(false)}
+              >
+                <Text style={styles.toggleText}>Use By</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.dateContainer}>
+              <View style={styles.datePromptView}>
+                <Text style={styles.datePromptText}>Expiry Date: </Text>
+              </View>
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                onChange={onChange}
+                minimumDate={new Date()}
+                style={styles.datePicker}
+              />
+            </View>
+
+            <TouchableOpacity onPress={sendInfo}>
+              <View style={styles.saveButton}>
+                <Text style={{color: 'white', alignSelf: 'center'}}>Save</Text>
+              </View>
+            </TouchableOpacity>
 
           </ScrollView>
         </View>
@@ -139,18 +150,12 @@ const styles = StyleSheet.create({
     color: '#00BBF2',
     marginVertical: 15,
   },
-  body: {
-    alignItems: 'center',
-    width: width,
-    flexDirection: 'column',
-    flex: 1,
-  },
-  InputContainer: {
+  inputContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20
+    marginTop: 20,
   },
-  ItemNameInput: {
+  itemNameInput: {
     margin: 10,
     padding: 10,
     borderWidth: 2,
@@ -159,23 +164,53 @@ const styles = StyleSheet.create({
     height: 40,
     width: width * 0.8,
   },
-  DateContainer: {
+  dateType: {
+    margin: 20,
     flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: width * 0.8,
+    alignSelf: 'center',
+  },
+  activeToggle: {
+    width: 100,
+    aspectRatio: 2,
+    borderRadius: 50,
+    backgroundColor: '#00BBF2',
+    justifyContent: 'center',
+  },
+  inactiveToggle: {
+    width: 100,
+    aspectRatio: 2,
+    borderRadius: 50,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    justifyContent: 'center',
+  },
+  toggleText: {
+    alignSelf: 'center',
+    color: 'white',
+  },
+  dateContainer: {
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     width: width * 0.8,
     height: 50,
-    justifyContent: 'centre',
-    alignItems: 'center',
+    alignSelf: 'center',
   },
-  DatePromptText: {
+  datePromptView: {
+    justifyContent: 'center',
+  },
+  datePromptText: {
     fontSize: 20,
   },
   saveButton: {
-    margin: 10,
+    alignSelf: 'center',
+    margin: 50,
     padding: 10,
     height: 40,
-    width: width * 0.5,
-    borderRadius: 20,
-    backgroundColor: 'red',
+    width: width * 0.4,
+    borderRadius: 10,
+    backgroundColor: 'green',
   },
 });
 
