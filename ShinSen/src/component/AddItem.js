@@ -1,11 +1,9 @@
 import React from 'react';
 import { View, Modal, StyleSheet, Dimensions, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { Header } from 'react-native/Libraries/NewAppScreen';
 
 const width = Dimensions.get('window').width;
 
-// onPress={setModalVisibility}
 const AddItem = ( props ) => {
   const { init, setModalVisibility } = props;
 
@@ -67,7 +65,7 @@ const styles = StyleSheet.create({
   headerText: {
     margin: 10,
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 24,
     color: '#00BBF2',
   },
 });
