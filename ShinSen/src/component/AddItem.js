@@ -18,7 +18,7 @@ const width = Dimensions.get('window').width;
 const AddItem = ( props ) => {
   const {init, setModalVisibility} = props;
 
-  const [text, changeText] = useState('');
+  const [text, setText] = useState('');
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
 
@@ -66,7 +66,7 @@ const AddItem = ( props ) => {
                   style={styles.ItemNameInput}
                   value={text}
                   mode={mode}
-                  onChangeText={changeText}
+                  onChangeText={setText}
                   placeholder='Item Name'
                 />
 
