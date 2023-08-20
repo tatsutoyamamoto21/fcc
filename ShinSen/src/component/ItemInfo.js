@@ -24,7 +24,7 @@ const ItemInfo = ( props ) => {
           <View style={styles.presses}>
             <TouchableOpacity
               style={styles.pressEdit}
-              onPress={() => setEditVisible(true)}
+              onPress={editItem}
             >
               <Text>Edit</Text>
             </TouchableOpacity>

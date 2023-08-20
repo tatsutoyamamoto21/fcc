@@ -148,6 +148,7 @@ const styles = StyleSheet.create({
   InputContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 20
   },
   ItemNameInput: {
     margin: 10,
