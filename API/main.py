@@ -27,6 +27,26 @@ def connect():
 @app.route("/add-item", methods=['POST'])
 def post():
     data = request.form
+    try :
+        name = data['ItemName']
+        exp = data['ExpDate']
+
+    except KeyError:
+        return "invalid request", 400
+    
+    cnx = connect()
+    cursor = cnx.cursor()
+    query = (
+        "INSERT INTO fridge_1 (ItemName, ExpDate) "
+        f"VALUES ('{name}', '{exp}');"
+    )
+    cursor.execute(query)
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+
+
+    return "ok", 200
     
 
 @app.route("/get-all-data", methods=['GET'])
@@ -47,17 +67,62 @@ def get():
 
         return None, 404
     
-    data = {}
-
-    for row in result:
-        data[row[0]] = {
-            "ItemName": row[1],
-            "ExpDate": row[2],
-        }
+    data = {"data": result}
 
     cursor.close()
     cnx.close()
 
     return data, 200
 
-app.run(host="0.0.0.0", port=5000, debug=True)
+@app.route("/delete-item/<int:key_id>", methods=['DELETE'])
+def delete(key_id):
+    cnx = connect()
+    cursor = cnx.cursor()
+    query = (
+        f"DELETE FROM fridge_1 WHERE ItemID = {key_id};"
+    )
+    try :
+        cursor.execute(query)
+        cnx.commit()
+    except:
+        print("faild to delete")
+        cursor.close()
+        cnx.close()
+
+        return "failed", 404
+    cursor.close()
+    cnx.close()
+
+    return "ok", 200
+
+@app.route("/edit-item", methods=['PUT'])
+def edit():
+    cnx = connect()
+    cursor = cnx.cursor()
+    data = request.form
+    try :
+        key_id = data['ItemID']
+        name = data['ItemName']
+        exp = data['ExpDate']
+
+    except KeyError:
+        return "invalid request", 400
+
+    query = (
+        f"UPDATE fridge_1 SET ItemName = '{name}', ExpDate = '{exp}' WHERE ItemID = {key_id};"
+    )
+    try :
+        cursor.execute(query)
+        cnx.commit()
+    except:
+        print("faild to edit")
+        cursor.close()
+        cnx.close()
+
+        return "failed", 404
+    cursor.close()
+    cnx.close()
+
+    return "ok", 200
+
+app.run(host="localhost", port=5000, debug=True)
