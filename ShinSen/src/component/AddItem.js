@@ -21,10 +21,14 @@ const AddItem = ( props ) => {
   const [text, changeText] = useState('');
 
   const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState('date');
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setDate(currentDate);
+    if (event.type == 'set') {
+      console.log('set');
+    }
   };
 
   const sendInfo = () => {
@@ -62,6 +66,7 @@ const AddItem = ( props ) => {
                 <TextInput
                   style={styles.ItemNameInput}
                   value={text}
+                  mode={mode}
                   onChangeText={changeText}
                   placeholder='Item Name'
                 />
@@ -80,12 +85,11 @@ const AddItem = ( props ) => {
 
                 </View>
 
-                <Button
-                  title='Save'
-                  onPress={sendInfo}
-                  styles={styles.saveButton}
-                  color={'#00BBF2'}
-                />
+                <TouchableOpacity onPress={sendInfo}>
+                  <View style={styles.saveButton}>
+                    <Text style={{color: 'white', alignSelf: 'center'}}>Save</Text>
+                  </View>
+                </TouchableOpacity>
 
 
                 <Text>Testing text</Text>
@@ -165,7 +169,7 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     height: 40,
-    width: width * 0.8,
+    width: width * 0.5,
     borderRadius: 20,
     backgroundColor: 'red',
   },
