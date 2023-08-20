@@ -5,8 +5,9 @@ import ItemInfo from './ItemInfo';
 const scrWidth = Dimensions.get('window').width;
 
 const ItemButton = ( props ) => {
-  const [modalVisible, setModalVisible] = useState(false);
   const { text } = props;
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <View>
       <TouchableOpacity

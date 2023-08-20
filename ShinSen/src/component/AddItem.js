@@ -16,9 +16,9 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 const width = Dimensions.get('window').width;
 
 const AddItem = ( props ) => {
-  const {init, setModalVisibility} = props;
+  const {init, title, setModalVisibility, editMode} = props;
 
-  const [text, setText] = useState('');
+  const [text, setText] = useState(title);
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
 
@@ -54,7 +54,7 @@ const AddItem = ( props ) => {
               <AntDesign name="left" size={30} color="grey" />
             </TouchableOpacity>
             <View>
-              <Text style={styles.headerText}>Add Item</Text>
+              <Text style={styles.headerText}>{`${editMode ? 'Edit' : 'Add'} Item`}</Text>
             </View>
           </View>
 
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     borderWidth: 2,
-    borderRadius: 20,
+    borderRadius: 5,
     borderColor: 'grey',
     height: 40,
     width: width * 0.8,

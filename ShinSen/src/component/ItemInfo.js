@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Modal, View, Text, TouchableOpacity } from 'react-native';
+import AddItem from './AddItem';
 
 const ItemInfo = ( props ) => {
   const { text, init, setModalVisibility } = props;
+  const [editVisible, setEditVisible] = useState(false);
+
+  const editItem = () => {
+    setEditVisible(true);
+  };
 
   return (
     <Modal
@@ -18,7 +24,7 @@ const ItemInfo = ( props ) => {
           <View style={styles.presses}>
             <TouchableOpacity
               style={styles.pressEdit}
-              onPress={setModalVisibility}
+              onPress={() => setEditVisible(true)}
             >
               <Text>Edit</Text>
             </TouchableOpacity>
@@ -29,9 +35,18 @@ const ItemInfo = ( props ) => {
             >
               <Text>Close</Text>
             </TouchableOpacity>
+
           </View>
         </View>
       </View>
+      <AddItem
+        init={editVisible}
+        setModalVisibility={
+          ()=>{setEditVisible(preState => preState = !preState)}
+        }
+        title={text.toString()}
+        editMode={true}
+      />
     </Modal>
   );
 };
