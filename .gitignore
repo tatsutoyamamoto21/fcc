@@ -36,3 +36,4 @@ yarn-error.*
 
 # python env
 env/
+API/.env
