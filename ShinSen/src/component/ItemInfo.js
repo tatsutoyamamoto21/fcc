@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Modal, View, Text, TouchableHighlight } from 'react-native';
+import { StyleSheet, Modal, View, Text, TouchableOpacity } from 'react-native';
 
 const ItemInfo = ( props ) => {
   const { text, init, setModalVisibility } = props;
@@ -16,19 +16,19 @@ const ItemInfo = ( props ) => {
           <Text style={styles.text}>{text}</Text>
 
           <View style={styles.presses}>
-            <TouchableHighlight
+            <TouchableOpacity
               style={styles.pressEdit}
               onPress={setModalVisibility}
             >
               <Text>Edit</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
 
-            <TouchableHighlight
+            <TouchableOpacity
               style={styles.pressClose}
               onPress={setModalVisibility}
             >
               <Text>Close</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
