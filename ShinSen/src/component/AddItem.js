@@ -45,20 +45,20 @@ const AddItem = ( props ) => {
     >
       <View style={styles.centerView}>
         <View style={styles.modalView}>
-          <ScrollView style={styles.scrollView}>
 
-            <View style={styles.header}>
-              <TouchableOpacity
-                onPress={setModalVisibility}
-                style={styles.backButton}
-              >
-                <AntDesign name="left" size={30} color="black" />
-              </TouchableOpacity>
-              <View>
-                <Text style={styles.headerText}>Add Item</Text>
-              </View>
+          <View style={styles.header}>
+            <TouchableOpacity
+              onPress={setModalVisibility}
+              style={styles.backButton}
+            >
+              <AntDesign name="left" size={30} color="grey" />
+            </TouchableOpacity>
+            <View>
+              <Text style={styles.headerText}>Add Item</Text>
             </View>
+          </View>
 
+          <ScrollView style={styles.scrollView}>
             <View style={styles.body}>
 
               <View style={styles.InputContainer}>
@@ -122,18 +122,22 @@ const styles = StyleSheet.create({
     width: width,
     justifyContent: 'center',
     alignItems: 'center',
+    borderBottomColor: 'lightgrey',
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   backButton: {
     position: 'absolute',
     zIndex: 11,
     left: 10,
     borderRadius: 10,
+    marginVertical: 15,
   },
   headerText: {
     margin: 10,
     fontWeight: 'bold',
-    fontSize: 24,
+    fontSize: 22,
     color: '#00BBF2',
+    marginVertical: 15,
   },
   body: {
     alignItems: 'center',
