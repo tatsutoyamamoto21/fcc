@@ -11,15 +11,14 @@ import {
   Button,
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { Header } from 'react-native/Libraries/NewAppScreen';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const width = Dimensions.get('window').width;
 
 const AddItem = ( props ) => {
   const {init, setModalVisibility} = props;
-  const [text, changeText] = useState('');
 
+  const [text, changeText] = useState('');
   const [date, setDate] = useState(new Date());
 
   const onChange = (event, selectedDate) => {
