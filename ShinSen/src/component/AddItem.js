@@ -19,6 +19,7 @@ const AddItem = ( props ) => {
   const {init, title, setModalVisibility, editMode} = props;
 
   const [text, setText] = useState(title);
+  const [portion, setPortion] = useState('');
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [isBestBefore, setIsBestBefore] = useState(true);
@@ -35,10 +36,15 @@ const AddItem = ( props ) => {
     // TODO: add post request to server
     console.log(date);
     console.log(text);
+<<<<<<< HEAD
     console.log(isBestBefore);
     API.getItems().then((data) => {
       console.log(data['data'][0][2]);
     });
+=======
+    console.log(portion)
+    setModalVisibility();
+>>>>>>> 8de3d80ca2eab9299c2913cf44f7dab348a39683
   };
 
 
@@ -62,7 +68,7 @@ const AddItem = ( props ) => {
               <Text style={styles.headerText}>{`${editMode ? 'Edit' : 'Add'} Item`}</Text>
             </View>
             <TouchableOpacity
-              onPress={setModalVisibility}
+              onPress={sendInfo}
               style={styles.doneButton}
             >
               <Text>Done</Text>
@@ -71,16 +77,27 @@ const AddItem = ( props ) => {
 
           <ScrollView>
 
-            <View style={styles.inputContainer}>
-              <View style={styles.itemNameText}>
+            <View style={styles.nameContainer}>
+              <View style={styles.nameText}>
                 <Text>Name</Text>
               </View>
               <TextInput
-                style={styles.itemNameInput}
+                style={styles.nameInput}
                 value={text}
-                mode={mode}
                 onChangeText={setText}
                 placeholder='Item Name'
+              />
+            </View>
+
+            <View style={styles.portionContainer}>
+              <View style={styles.portionText}>
+                <Text>Portion(s)</Text>
+              </View>
+              <TextInput
+                style={styles.portionInput}
+                value={portion}
+                onChangeText={setPortion}
+                placeholder='Enter portion(s)'
               />
             </View>
 
@@ -88,38 +105,35 @@ const AddItem = ( props ) => {
               <View style={styles.dateTypeText}>
                 <Text>Date Type</Text>
               </View>
-              <TouchableOpacity
-                style={isBestBefore === true ? styles.activeToggle : styles.inactiveToggle}
-                onPress={() => setIsBestBefore(true)}
-              >
-                <Text style={styles.toggleText}>Best Before</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={isBestBefore === false ? styles.activeToggle : styles.inactiveToggle}
-                onPress={() => setIsBestBefore(false)}
-              >
-                <Text style={styles.toggleText}>Use By</Text>
-              </TouchableOpacity>
+              <View style={styles.dateToggleContainer}>
+                <TouchableOpacity
+                  style={isBestBefore === true ? styles.activeToggle : styles.inactiveToggle}
+                  onPress={() => setIsBestBefore(true)}
+                >
+                  <Text style={styles.toggleText}>Best Before</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={isBestBefore === false ? styles.activeToggle : styles.inactiveToggle}
+                  onPress={() => setIsBestBefore(false)}
+                >
+                  <Text style={styles.toggleText}>Use By</Text>
+                </TouchableOpacity>
+              </View>
             </View>
 
             <View style={styles.dateContainer}>
               <View style={styles.datePromptView}>
-                <Text style={styles.datePromptText}>Expiry Date: </Text>
+                <Text style={styles.datePromptText}>Expiry Date</Text>
               </View>
-              <DateTimePicker
-                testID="dateTimePicker"
-                value={date}
-                onChange={onChange}
-                minimumDate={new Date()}
-                style={styles.datePicker}
-              />
+              <View style={styles.datePicker}>
+                <DateTimePicker
+                  testID="dateTimePicker"
+                  value={date}
+                  onChange={onChange}
+                  minimumDate={new Date()}
+                />
+              </View>
             </View>
-
-            <TouchableOpacity onPress={sendInfo}>
-              <View style={styles.saveButton}>
-                <Text style={{color: 'white', alignSelf: 'center'}}>Save</Text>
-              </View>
-            </TouchableOpacity>
 
           </ScrollView>
         </View>
@@ -127,6 +141,15 @@ const AddItem = ( props ) => {
     </Modal>
   );
 };
+
+`
+<DateTimePicker
+  testID="dateTimePicker"
+  value={date}
+  onChange={onChange}
+  minimumDate={new Date()}
+/>
+`;
 
 const styles = StyleSheet.create({
   centerView: {
@@ -140,6 +163,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: 'rgb(250,250,250)',
   },
+
   header: {
     flexDirection: 'row',
     width: 'auto',
@@ -171,50 +195,72 @@ const styles = StyleSheet.create({
     color: '#00BBF2',
     marginVertical: 15,
   },
-  inputContainer: {
+
+  nameContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    margin: 5,
+    margin: 2,
     marginTop: 10,
+    marginHorizontal: 5,
   },
-  itemNameText: {
+  nameText: {
     flex: 1,
-    marginLeft: 10,
+    marginLeft: 13,
   },
-  itemNameInput: {
+  nameInput: {
     flex: 2,
-    marginRight: 10,
-    padding: 10,
-    borderRadius: 5,
     borderColor: 'grey',
     height: 40,
     borderBottomColor: 'lightgrey',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
-  dateType: {
-    margin: 5,
-    flexDirection: 'row',
+
+  portionContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
+    margin: 2,
+    marginHorizontal: 5,
+  },
+  portionText: {
+    flex: 1,
+    marginLeft: 13,
+  },
+  portionInput: {
+    flex: 2,
+    borderColor: 'grey',
+    height: 40,
+    borderBottomColor: 'lightgrey',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+
+  dateType: {
+    flexDirection: 'row',
+    alignItems: 'center',
     alignSelf: 'center',
+    margin: 2,
+    marginHorizontal: 5,
+    height: 40,
   },
   dateTypeText: {
     flex: 1,
+    marginLeft: 13,
+  },
+  dateToggleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 2,
   },
   activeToggle: {
     flex: 1,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
+    height: 40,
     backgroundColor: '#00BBF2',
     justifyContent: 'center',
-    height: 40,
   },
   inactiveToggle: {
     flex: 1,
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    backgroundColor: 'lightgrey',
     justifyContent: 'center',
     height: 40,
   },
@@ -222,28 +268,21 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: 'white',
   },
+
   dateContainer: {
-    marginTop: 20,
+    alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: width * 0.8,
-    height: 50,
-    alignSelf: 'center',
+    margin: 2,
+    marginHorizontal: 5,
+    height: 40,
+    marginBottom: 20,
   },
   datePromptView: {
-    justifyContent: 'center',
+    flex: 1,
+    marginLeft: 13,
   },
-  datePromptText: {
-    fontSize: 20,
-  },
-  saveButton: {
-    alignSelf: 'center',
-    margin: 50,
-    padding: 10,
-    height: 40,
-    width: width * 0.4,
-    borderRadius: 10,
-    backgroundColor: 'green',
+  datePicker: {
+    flex: 2,
   },
 });
 
