@@ -19,7 +19,6 @@ const AddItem = ( props ) => {
   const [text, setText] = useState(title);
   const [portion, setPortion] = useState('');
   const [date, setDate] = useState(new Date());
-  const [mode, setMode] = useState('date');
   const [isBestBefore, setIsBestBefore] = useState(true);
 
   const onChange = (event, selectedDate) => {
@@ -34,8 +33,12 @@ const AddItem = ( props ) => {
     // TODO: add post request to server
     console.log(date);
     console.log(text);
-    console.log(portion)
+    console.log(portion);
     setModalVisibility();
+    setText('');
+    setPortion('');
+    setDate(new Date()),
+    setIsBestBefore(true);
   };
 
 
