@@ -1,4 +1,5 @@
 import os
+import datetime
 from flask import Flask, request, jsonify
 from mysql import connector
 from dotenv import load_dotenv
@@ -30,6 +31,7 @@ def post():
     try :
         name = data['ItemName']
         exp = data['ExpDate']
+        best_before = data['IsBestBefore']
 
     except KeyError:
         return "invalid request", 400
@@ -37,8 +39,8 @@ def post():
     cnx = connect()
     cursor = cnx.cursor()
     query = (
-        "INSERT INTO fridge_1 (ItemName, ExpDate) "
-        f"VALUES ('{name}', '{exp}');"
+        "INSERT INTO fridge_1 (ItemName, ExpDate, IsBestBefore) "
+        f"VALUES ('{name}', '{exp}', '{best_before}');"
     )
     cursor.execute(query)
     cnx.commit()
@@ -67,6 +69,10 @@ def get():
 
         return None, 404
     
+    for i in range(len(result)):
+        result[i] = list(result[i])
+        result[i][2] = result[i][2].strftime("%Y-%m-%d")
+
     data = {"data": result}
 
     cursor.close()
@@ -104,12 +110,13 @@ def edit():
         key_id = data['ItemID']
         name = data['ItemName']
         exp = data['ExpDate']
+        best_before = data['IsBestBefore']
 
     except KeyError:
         return "invalid request", 400
 
     query = (
-        f"UPDATE fridge_1 SET ItemName = '{name}', ExpDate = '{exp}' WHERE ItemID = {key_id};"
+        f"UPDATE fridge_1 SET ItemName = '{name}', ExpDate = '{exp}', IsBestBefore = '{best_before}' WHERE ItemID = {key_id};"
     )
     try :
         cursor.execute(query)
@@ -125,4 +132,4 @@ def edit():
 
     return "ok", 200
 
-app.run(host="localhost", port=5000, debug=True)
+app.run(host="0.0.0.0", port=5000, debug=True)

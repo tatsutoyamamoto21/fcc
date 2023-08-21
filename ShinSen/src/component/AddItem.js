@@ -10,8 +10,10 @@ import {
   TextInput,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import APIUtils from '../utilities/http-request-func';
 
 const width = Dimensions.get('window').width;
+const API = new APIUtils('http://192.168.1.12:5000');
 
 const AddItem = ( props ) => {
   const {init, title, setModalVisibility, editMode} = props;
@@ -33,6 +35,10 @@ const AddItem = ( props ) => {
     // TODO: add post request to server
     console.log(date);
     console.log(text);
+    console.log(isBestBefore);
+    API.getItems().then((data) => {
+      console.log(data['data'][0][2]);
+    });
   };
 
 
