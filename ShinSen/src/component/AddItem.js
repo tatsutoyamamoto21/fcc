@@ -17,6 +17,7 @@ const AddItem = ( props ) => {
   const {init, title, setModalVisibility, editMode} = props;
 
   const [text, setText] = useState(title);
+  const [portion, setPortion] = useState('');
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [isBestBefore, setIsBestBefore] = useState(true);
@@ -33,6 +34,7 @@ const AddItem = ( props ) => {
     // TODO: add post request to server
     console.log(date);
     console.log(text);
+    console.log(portion)
     setModalVisibility();
   };
 
@@ -66,16 +68,27 @@ const AddItem = ( props ) => {
 
           <ScrollView>
 
-            <View style={styles.inputContainer}>
-              <View style={styles.itemNameText}>
+            <View style={styles.nameContainer}>
+              <View style={styles.nameText}>
                 <Text>Name</Text>
               </View>
               <TextInput
-                style={styles.itemNameInput}
+                style={styles.nameInput}
                 value={text}
-                mode={mode}
                 onChangeText={setText}
                 placeholder='Item Name'
+              />
+            </View>
+
+            <View style={styles.portionContainer}>
+              <View style={styles.portionText}>
+                <Text>Portion(s)</Text>
+              </View>
+              <TextInput
+                style={styles.portionInput}
+                value={portion}
+                onChangeText={setPortion}
+                placeholder='Enter portion(s)'
               />
             </View>
 
@@ -141,6 +154,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: 'rgb(250,250,250)',
   },
+
   header: {
     flexDirection: 'row',
     width: 'auto',
@@ -172,7 +186,8 @@ const styles = StyleSheet.create({
     color: '#00BBF2',
     marginVertical: 15,
   },
-  inputContainer: {
+
+  nameContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
@@ -180,17 +195,37 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginHorizontal: 5,
   },
-  itemNameText: {
+  nameText: {
     flex: 1,
     marginLeft: 13,
   },
-  itemNameInput: {
+  nameInput: {
     flex: 2,
     borderColor: 'grey',
     height: 40,
     borderBottomColor: 'lightgrey',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
+
+  portionContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    margin: 2,
+    marginHorizontal: 5,
+  },
+  portionText: {
+    flex: 1,
+    marginLeft: 13,
+  },
+  portionInput: {
+    flex: 2,
+    borderColor: 'grey',
+    height: 40,
+    borderBottomColor: 'lightgrey',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+
   dateType: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -224,13 +259,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: 'white',
   },
+
   dateContainer: {
     alignItems: 'center',
     flexDirection: 'row',
     margin: 2,
     marginHorizontal: 5,
     height: 40,
-    marginBottom:20
+    marginBottom: 20,
   },
   datePromptView: {
     flex: 1,
