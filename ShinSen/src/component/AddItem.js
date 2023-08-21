@@ -36,15 +36,12 @@ const AddItem = ( props ) => {
     // TODO: add post request to server
     console.log(date);
     console.log(text);
-<<<<<<< HEAD
     console.log(isBestBefore);
+    console.log(portion);
     API.getItems().then((data) => {
       console.log(data['data'][0][2]);
     });
-=======
-    console.log(portion)
     setModalVisibility();
->>>>>>> 8de3d80ca2eab9299c2913cf44f7dab348a39683
   };
 
 
