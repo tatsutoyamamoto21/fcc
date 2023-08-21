@@ -21,7 +21,6 @@ const AddItem = ( props ) => {
   const [text, setText] = useState(title);
   const [portion, setPortion] = useState('');
   const [date, setDate] = useState(new Date());
-  const [mode, setMode] = useState('date');
   const [isBestBefore, setIsBestBefore] = useState(true);
 
   const onChange = (event, selectedDate) => {
@@ -41,7 +40,12 @@ const AddItem = ( props ) => {
     API.getItems().then((data) => {
       console.log(data['data'][0][2]);
     });
+    console.log(portion);
     setModalVisibility();
+    setText('');
+    setPortion('');
+    setDate(new Date()),
+    setIsBestBefore(true);
   };
 
 
