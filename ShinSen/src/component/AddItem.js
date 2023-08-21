@@ -38,7 +38,7 @@ const AddItem = ( props ) => {
 
   return (
     <Modal
-      animationType='slide'
+      animationType='fade'
       transparent={true}
       visible={init}
     >
@@ -66,6 +66,9 @@ const AddItem = ( props ) => {
           <ScrollView>
 
             <View style={styles.inputContainer}>
+              <View style={styles.itemNameText}>
+                <Text>Name</Text>
+              </View>
               <TextInput
                 style={styles.itemNameInput}
                 value={text}
@@ -76,6 +79,9 @@ const AddItem = ( props ) => {
             </View>
 
             <View style={styles.dateType}>
+              <View style={styles.dateTypeText}>
+                <Text>Date Type</Text>
+              </View>
               <TouchableOpacity
                 style={isBestBefore === true ? styles.activeToggle : styles.inactiveToggle}
                 onPress={() => setIsBestBefore(true)}
@@ -125,7 +131,7 @@ const styles = StyleSheet.create({
   modalView: {
     width: '90%',
     alignSelf: 'center',
-    borderRadius: 10,
+    borderRadius: 20,
     backgroundColor: 'rgb(250,250,250)',
   },
   header: {
@@ -136,25 +142,24 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderBottomColor: 'lightgrey',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
   backButton: {
     position: 'absolute',
     zIndex: 11,
     left: 15,
-    borderRadius: 10,
+    borderRadius: 20,
     marginVertical: 15,
   },
   doneButton: {
     position: 'absolute',
     zIndex: 11,
     right: 15,
-    borderRadius: 10,
+    borderRadius: 20,
     marginVertical: 15,
   },
   headerText: {
-    margin: 10,
     fontWeight: 'bold',
     fontSize: 22,
     color: '#00BBF2',
@@ -163,37 +168,49 @@ const styles = StyleSheet.create({
   inputContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
+    flexDirection: 'row',
+    margin: 5,
+    marginTop: 10,
+  },
+  itemNameText: {
+    flex: 1,
+    marginLeft: 10,
   },
   itemNameInput: {
-    margin: 10,
+    flex: 2,
+    marginRight: 10,
     padding: 10,
-    borderWidth: 2,
     borderRadius: 5,
     borderColor: 'grey',
     height: 40,
-    width: width * 0.8,
+    borderBottomColor: 'lightgrey',
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   dateType: {
-    margin: 20,
+    margin: 5,
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: width * 0.8,
+    alignItems: 'center',
+    justifyContent: 'center',
     alignSelf: 'center',
   },
+  dateTypeText: {
+    flex: 1,
+  },
   activeToggle: {
-    width: 100,
-    aspectRatio: 2,
-    borderRadius: 50,
+    flex: 1,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
     backgroundColor: '#00BBF2',
     justifyContent: 'center',
+    height: 40,
   },
   inactiveToggle: {
-    width: 100,
-    aspectRatio: 2,
-    borderRadius: 50,
+    flex: 1,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
     justifyContent: 'center',
+    height: 40,
   },
   toggleText: {
     alignSelf: 'center',
