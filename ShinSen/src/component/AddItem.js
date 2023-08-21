@@ -101,7 +101,7 @@ const AddItem = ( props ) => {
 
             <View style={styles.dateContainer}>
               <View style={styles.datePromptView}>
-                <Text style={styles.datePromptText}>Expiry Date: </Text>
+                <Text style={styles.datePromptText}>Expiry Date</Text>
               </View>
               <View style={styles.datePicker}>
                 <DateTimePicker
