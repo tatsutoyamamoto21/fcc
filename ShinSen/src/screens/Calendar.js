@@ -3,10 +3,10 @@ import isEmpty from 'lodash/isEmpty';
 import { CalendarProvider, AgendaList, ExpandableCalendar } from 'react-native-calendars';
 import AgendaItem from '../component/AgendaItem';
 
-const today = new Date().toISOString().split('T')[0];
-const fastDate = getPastDate(5);
-const futureDates = getFutureDates(12);
-const dates = [fastDate, today].concat(futureDates);
+// const today = new Date().toISOString().split('T')[0];
+// const fastDate = getPastDate(5);
+// const futureDates = getFutureDates(12);
+// const dates = [fastDate, today].concat(futureDates);
 
 function getFutureDates(numberOfDays) {
   const array = [];
@@ -29,18 +29,29 @@ function getPastDate(numberOfDays) {
 
 export const foodItems = [
   {
-    title: "2023-08-29",
-    data: [{itemID: '1', itemName: 'Chicken', isBestBefore: true, expDate: '2023-08-29'}]
+    title: '2023-08-29',
+    data: [{itemID: '1', itemName: 'Chicken', isBestBefore: true, expDate: '2023-08-29'}],
   },
   {
-    title: "2023-08-30",
+    title: '2023-08-30',
     data: [
       {itemID: '2', itemName: 'Eggs', isBestBefore: false, expDate: '2023-08-30'},
-      {itemID: '3', itemName: 'Milk', isBestBefore: true, expDate: '2023-08-30'}
-    ]
+      {itemID: '3', itemName: 'Milk', isBestBefore: true, expDate: '2023-08-30'},
+    ],
   },
-]
+];
 const ITEMS = foodItems;
+console.log(ITEMS[0].data[0])
+
+// ITEMS.forEach((item) => {
+
+// });
+
+// [
+//   {itemID: '1', itemName: 'Chicken', isBestBefore: true, expDate: '2023-08-29'},
+//   {itemID: '2', itemName: 'Eggs', isBestBefore: false, expDate: '2023-08-30'},
+//   {itemID: '3', itemName: 'Milk', isBestBefore: true, expDate: '2023-08-30'},
+// ];
 
 export const getMarkedDates = ( props ) => {
   const marked = {};
@@ -54,7 +65,7 @@ export const getMarkedDates = ( props ) => {
     }
   });
   return marked;
-}
+};
 
 const Calendar = () => {
   const renderItem = useCallback(({item}) => {
@@ -71,7 +82,7 @@ const Calendar = () => {
         renderItem={renderItem}
       />
     </CalendarProvider>
-  )
-}
+  );
+};
 
-export default Calendar
+export default Calendar;
