@@ -10,46 +10,51 @@ const ItemInfo = ( props ) => {
 
   const editItem = () => {
     setEditVisible(true);
+    setModalVisibility();
   };
 
   return (
-    <Modal
-      animationType='fade'
-      transparent={true}
-      visible={init}
-    >
-      <View style={styles.centerView}>
-        <View style={styles.modalView}>
+    <View>
+      <Modal
+        animationType='fade'
+        transparent={true}
+        visible={init}
+      >
+        <View style={styles.centerView}>
+          <View style={styles.modalView}>
 
-          <Text style={styles.text}>{text}</Text>
+            <Text style={styles.text}>{text}</Text>
 
-          <View style={styles.presses}>
-            <TouchableOpacity
-              style={styles.pressEdit}
-              onPress={editItem}
-            >
-              <Text>Edit</Text>
-            </TouchableOpacity>
+            <View style={styles.presses}>
+              <TouchableOpacity
+                style={styles.pressEdit}
+                onPress={editItem}
+              >
+                <Text>Edit</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              style={styles.pressClose}
-              onPress={setModalVisibility}
-            >
-              <Text>Close</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.pressClose}
+                onPress={setModalVisibility}
+              >
+                <Text>Close</Text>
+              </TouchableOpacity>
 
+            </View>
           </View>
         </View>
-      </View>
+      </Modal>
       <AddItem
         init={editVisible}
         setModalVisibility={
-          ()=>{setEditVisible(preState => preState = !preState)}
+          () => {setEditVisible(preState => preState = !preState)}
         }
-        title={text.toString()}
+        initText={text.toString()}
+        initPortion={(text + 3).toString()}
+        initBestBefore={false}
         editMode={true}
       />
-    </Modal>
+    </View>
   );
 };
 

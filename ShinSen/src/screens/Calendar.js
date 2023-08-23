@@ -1,7 +1,6 @@
-import { React, useCallback, useRef } from 'react'
-import { View } from 'react-native'
+import { React, useCallback, useRef } from 'react';
 import isEmpty from 'lodash/isEmpty';
-import { CalendarProvider, AgendaList, ExpandableCalendar } from 'react-native-calendars'
+import { CalendarProvider, AgendaList, ExpandableCalendar } from 'react-native-calendars';
 import AgendaItem from '../component/AgendaItem';
 
 const today = new Date().toISOString().split('T')[0];
@@ -9,12 +8,8 @@ const fastDate = getPastDate(5);
 const futureDates = getFutureDates(12);
 const dates = [fastDate, today].concat(futureDates);
 
-console.log(fastDate)
-console.log(futureDates)
-console.log(dates)
-
-function getFutureDates(numberOfDays: number) {
-  const array: string[] = [];
+function getFutureDates(numberOfDays) {
+  const array = [];
   for (let index = 1; index <= numberOfDays; index++) {
     let d = Date.now();
     if (index > 8) {
@@ -28,106 +23,29 @@ function getFutureDates(numberOfDays: number) {
   }
   return array;
 }
-function getPastDate(numberOfDays: number) {
+function getPastDate(numberOfDays) {
   return new Date(Date.now() - 864e5 * numberOfDays).toISOString().split('T')[0];
 }
 
-export const agendaItems = [
+export const foodItems = [
   {
-    title: dates[0],
-    data: [{hour: '12am', duration: '1h', title: 'First Yoga'}]
+    title: "2023-08-29",
+    data: [{itemID: '1', itemName: 'Chicken', isBestBefore: true, expDate: '2023-08-29'}]
   },
   {
-    title: dates[1],
+    title: "2023-08-30",
     data: [
-      {hour: '4pm', duration: '1h', title: 'Pilates ABC'},
-      {hour: '5pm', duration: '1h', title: 'Vinyasa Yoga'}
+      {itemID: '2', itemName: 'Eggs', isBestBefore: false, expDate: '2023-08-30'},
+      {itemID: '3', itemName: 'Milk', isBestBefore: true, expDate: '2023-08-30'}
     ]
   },
-  {
-    title: dates[2],
-    data: [
-      {hour: '1pm', duration: '1h', title: 'Ashtanga Yoga'},
-      {hour: '2pm', duration: '1h', title: 'Deep Stretches'},
-      {hour: '3pm', duration: '1h', title: 'Private Yoga'}
-    ]
-  },
-  {
-    title: dates[3],
-    data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]
-  },
-  {
-    title: dates[4],
-    data: [{}]
-  },
-  {
-    title: dates[5],
-    data: [
-      {hour: '9pm', duration: '1h', title: 'Middle Yoga'},
-      {hour: '10pm', duration: '1h', title: 'Ashtanga'},
-      {hour: '11pm', duration: '1h', title: 'TRX'},
-      {hour: '12pm', duration: '1h', title: 'Running Group'}
-    ]
-  },
-  {
-    title: dates[6], 
-    data: [
-      {hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}
-    ]
-  },
-  {
-    title: dates[7], 
-    data: [{}]
-  },
-  {
-    title: dates[8],
-    data: [
-      {hour: '9pm', duration: '1h', title: 'Pilates Reformer'},
-      {hour: '10pm', duration: '1h', title: 'Ashtanga'},
-      {hour: '11pm', duration: '1h', title: 'TRX'},
-      {hour: '12pm', duration: '1h', title: 'Running Group'}
-    ]
-  },
-  {
-    title: dates[9],
-    data: [
-      {hour: '1pm', duration: '1h', title: 'Ashtanga Yoga'},
-      {hour: '2pm', duration: '1h', title: 'Deep Stretches'},
-      {hour: '3pm', duration: '1h', title: 'Private Yoga'}
-    ]
-  },
-  {
-    title: dates[10], 
-    data: [
-      {hour: '12am', duration: '1h', title: 'Last Yoga'}
-    ]
-  },
-  {
-    title: dates[11],
-    data: [
-      {hour: '1pm', duration: '1h', title: 'Ashtanga Yoga'},
-      {hour: '2pm', duration: '1h', title: 'Deep Stretches'},
-      {hour: '3pm', duration: '1h', title: 'Private Yoga'}
-    ]
-  },
-  {
-    title: dates[12], 
-    data: [
-      {hour: '12am', duration: '1h', title: 'Last Yoga'}
-    ]
-  },
-  {
-    title: dates[13], 
-    data: [
-      {hour: '12am', duration: '1h', title: 'Last Yoga'}
-    ]
-  }
-];
+]
+const ITEMS = foodItems;
 
-export function getMarkedDates( props ) {
-  const marked: MarkedDates = {};
+export const getMarkedDates = ( props ) => {
+  const marked = {};
 
-  agendaItems.forEach(item => {
+  ITEMS.forEach((item) => {
     // NOTE: only mark dates with data
     if (item.data && item.data.length > 0 && !isEmpty(item.data[0])) {
       marked[item.title] = {marked: true};
@@ -138,15 +56,12 @@ export function getMarkedDates( props ) {
   return marked;
 }
 
-const ITEMS = agendaItems;
-
 const Calendar = () => {
-
   const renderItem = useCallback(({item}) => {
     return <AgendaItem item={item}/>;
   }, []);
 
-  const marked = useRef(getMarkedDates())
+  const marked = useRef(getMarkedDates());
 
   return (
     <CalendarProvider showTodayButton date={ITEMS[1]?.title}>

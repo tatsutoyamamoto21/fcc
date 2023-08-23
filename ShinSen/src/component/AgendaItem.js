@@ -1,20 +1,18 @@
 import isEmpty from 'lodash/isEmpty';
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import {StyleSheet, Alert, View, Text, TouchableOpacity, Button} from 'react-native';
+import ItemInfo from '../component/ItemInfo';
 
-interface ItemProps {
-  item: any;
-}
-
-const AgendaItem = (props: ItemProps) => {
-  const {item} = props;
+const AgendaItem = ( props ) => {
+  const { item } = props;
+  const [modalVisible, setModalVisible] = useState(false);
 
   const buttonPressed = useCallback(() => {
     Alert.alert('Show me more');
   }, []);
 
   const itemPressed = useCallback(() => {
-    Alert.alert(item.title);
+    setModalVisible(true)
   }, []);
 
   if (isEmpty(item)) {
@@ -26,21 +24,28 @@ const AgendaItem = (props: ItemProps) => {
   }
 
   return (
-    <TouchableOpacity onPress={itemPressed} style={styles.item}>
-      <View>
-        <Text style={styles.itemHourText}>{item.hour}</Text>
-        <Text style={styles.itemDurationText}>{item.duration}</Text>
-      </View>
-      <Text style={styles.itemTitleText}>{item.title}</Text>
-      <View style={styles.itemButtonContainer}>
-        <Button color={'grey'} title={'Info'} onPress={buttonPressed}/>
-      </View>
-    </TouchableOpacity>
+    <View>
+      <TouchableOpacity onPress={itemPressed} style={styles.item}>
+        <View style={styles.isBestBeforeContainer}>
+          <Text style={styles.isBestBeforeText}>{item.isBestBefore ? 'Best Before' : 'Use by'}</Text>
+        </View>
+        <View style={styles.itemNameContainer}>
+          <Text style={styles.itemNameText}>{item.itemName}</Text>
+        </View>
+        <View style={styles.itemButtonContainer}>
+          <Button color={'grey'} title={'Info'} onPress={buttonPressed}/>
+        </View>
+      </TouchableOpacity>
+      <ItemInfo
+        text={item.itemName}
+        init={modalVisible}
+        setModalVisibility={()=>{setModalVisible(preState => preState = !preState)}}
+      />
+    </View>
   );
 };
 
 export default React.memo(AgendaItem);
-
 
 const styles = StyleSheet.create({
   item: {
@@ -48,36 +53,37 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderBottomWidth: 1,
     borderBottomColor: 'lightgrey',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
-  itemHourText: {
-    color: 'black'
+  isBestBeforeContainer: {
+    flex: 1,
   },
-  itemDurationText: {
-    color: 'grey',
-    fontSize: 12,
-    marginTop: 4,
-    marginLeft: 4
+  isBestBeforeText: {
+    color: 'black',
+    textAlign: 'center',
   },
-  itemTitleText: {
+  itemNameContainer: {
+    flex: 3,
+  },
+  itemNameText: {
     color: 'black',
     marginLeft: 16,
     fontWeight: 'bold',
-    fontSize: 16
+    fontSize: 16,
   },
   itemButtonContainer: {
     flex: 1,
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   emptyItem: {
     paddingLeft: 20,
     height: 52,
     justifyContent: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: 'lightgrey'
+    borderBottomColor: 'lightgrey',
   },
   emptyItemText: {
     color: 'lightgrey',
-    fontSize: 14
-  }
+    fontSize: 14,
+  },
 });
