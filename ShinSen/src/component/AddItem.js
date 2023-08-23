@@ -35,9 +35,6 @@ const AddItem = ( props ) => {
     console.log(text);
     console.log(isBestBefore);
     console.log(portion);
-    API.getItems().then((data) => {
-      console.log(data['data'][0][2]);
-    });
     setModalVisibility();
     setText('');
     setPortion('');
