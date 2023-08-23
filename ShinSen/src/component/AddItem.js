@@ -41,21 +41,6 @@ const AddItem = ( props ) => {
     setPortion('');
     setDate(new Date()),
     setIsBestBefore(true);
-
-    `API.getItems().then((res) => {
-      res.forEach((item) => {
-        console.log(item.data);
-      });
-    });`
-
-    `API.deleteItem(1).then((res) => {
-      console.log(res);
-    });`
-
-    `API.updateItem(2, 'test', '2021-01-01', true).then((res) => {
-      console.log(res);
-    });`
-    
   };
 
   const closeModal = () => {
