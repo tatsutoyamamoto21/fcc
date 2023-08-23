@@ -3,6 +3,7 @@ import datetime
 from flask import Flask, request, jsonify, redirect, url_for
 from mysql import connector
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 
@@ -56,7 +57,7 @@ def add():
 def get():
     cnx = connect()
     query = (
-        "SELECT * FROM fridge_1;"
+        "SELECT * FROM fridge_1 ORDER BY ExpDate;"
     )
 
     cursor =cnx.cursor()
@@ -73,13 +74,24 @@ def get():
     for i in range(len(result)):
         result[i] = list(result[i])
         result[i][2] = result[i][2].strftime("%Y-%m-%d")
+        result[i] = dict(zip(["ItemID", "ItemName", "ExpDate", "IsBestBefore"], result[i]))
 
-    data = {"data": result}
+    data = {}
+    for row in result:
+        if row['ExpDate'] not in data:
+            data[row['ExpDate']] = [row]
+        else:
+            data[row['ExpDate']].append(row)
+            
+
+    # data = {"data": result}
+    exp = [{'title':key, 'data':data[key]} for key in data ]
+    print(exp)
 
     cursor.close()
     cnx.close()
 
-    return data, 200
+    return exp, 200
 
 @app.route("/delete-item/<int:key_id>", methods=['DELETE'])
 def delete(key_id):
