@@ -12,7 +12,7 @@ const AgendaItem = ( props ) => {
   }, []);
 
   const itemPressed = useCallback(() => {
-    setModalVisible(true)
+    setModalVisible(true);
   }, []);
 
   if (isEmpty(item)) {
@@ -37,13 +37,16 @@ const AgendaItem = ( props ) => {
         </View>
       </TouchableOpacity>
       <ItemInfo
-        text={item.itemName}
-        init={modalVisible}
+        initModal={modalVisible}
+        initText={item.itemName}
+        initPortion={''}
+        initBestBefore={item.isBestBefore}
         setModalVisibility={()=>{setModalVisible(preState => preState = !preState)}}
       />
     </View>
   );
 };
+
 
 export default React.memo(AgendaItem);
 

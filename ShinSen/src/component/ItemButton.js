@@ -17,8 +17,10 @@ const ItemButton = ( props ) => {
         </View>
       </TouchableOpacity>
       <ItemInfo
-        text={text}
-        init={modalVisible}
+        initModal={modalVisible}
+        initText={text}
+        initPortion={''}
+        initBestBefore={true}
         setModalVisibility={()=>{setModalVisible(preState => preState = !preState)}}
       />
     </View>
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
     width: (scrWidth-6) * 1/3,
     aspectRatio: 1,
     backgroundColor: 'white',
-    borderRadius: 10,
+    borderRadius: 0,
   },
 });
 

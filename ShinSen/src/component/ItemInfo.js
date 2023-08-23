@@ -5,7 +5,7 @@ import AddItem from './AddItem';
 const width = Dimensions.get('window').width;
 
 const ItemInfo = ( props ) => {
-  const { text, init, setModalVisibility } = props;
+  const { initModal, initText, initPortion, initBestBefore, setModalVisibility } = props;
   const [editVisible, setEditVisible] = useState(false);
 
   const editItem = () => {
@@ -18,12 +18,14 @@ const ItemInfo = ( props ) => {
       <Modal
         animationType='fade'
         transparent={true}
-        visible={init}
+        visible={initModal}
       >
         <View style={styles.centerView}>
           <View style={styles.modalView}>
 
-            <Text style={styles.text}>{text}</Text>
+            <Text style={styles.text}>{initText}</Text>
+            <Text style={styles.text}>{initPortion+1}</Text>
+            <Text style={styles.text}>{initBestBefore.toString()}</Text>
 
             <View style={styles.presses}>
               <TouchableOpacity
@@ -47,10 +49,10 @@ const ItemInfo = ( props ) => {
       <AddItem
         init={editVisible}
         setModalVisibility={
-          () => {setEditVisible(preState => preState = !preState)}
+          () => { setEditVisible(preState => preState = !preState) }
         }
-        initText={text.toString()}
-        initPortion={(text + 3).toString()}
+        initText={initText.toString()}
+        initPortion={(initText + 3).toString()}
         initBestBefore={false}
         editMode={true}
       />
