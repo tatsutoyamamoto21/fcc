@@ -1,6 +1,6 @@
 import os
 import datetime
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect, url_for
 from mysql import connector
 from dotenv import load_dotenv
 
@@ -26,8 +26,9 @@ def connect():
         exit()
 
 @app.route("/add-item", methods=['POST'])
-def post():
-    data = request.form
+def add():
+    data = request.json
+    print(data)
     try :
         name = data['ItemName']
         exp = data['ExpDate']

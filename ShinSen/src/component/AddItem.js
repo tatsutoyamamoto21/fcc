@@ -37,15 +37,26 @@ const AddItem = ( props ) => {
     console.log(text);
     console.log(isBestBefore);
     console.log(portion);
-    API.getItems().then((data) => {
-      console.log(data['data'][0][2]);
-    });
-    console.log(portion);
     setModalVisibility();
     setText('');
     setPortion('');
     setDate(new Date()),
     setIsBestBefore(true);
+
+    `API.getItems().then((res) => {
+      res.forEach((item) => {
+        console.log(item.data);
+      });
+    });`
+
+    `API.deleteItem(1).then((res) => {
+      console.log(res);
+    });`
+
+    `API.updateItem(2, 'test', '2021-01-01', true).then((res) => {
+      console.log(res);
+    });`
+    
   };
 
 
