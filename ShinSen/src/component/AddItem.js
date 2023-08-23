@@ -12,16 +12,15 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker';
 import APIUtils from '../utilities/http-request-func';
 
-const width = Dimensions.get('window').width;
 const API = new APIUtils('http://192.168.1.12:5000');
 
 const AddItem = ( props ) => {
-  const {init, title, setModalVisibility, editMode} = props;
+  const {init, initText, initPortion, initBestBefore,setModalVisibility, editMode} = props;
 
-  const [text, setText] = useState(title);
-  const [portion, setPortion] = useState('');
+  const [text, setText] = useState(initText);
+  const [portion, setPortion] = useState(initPortion);
   const [date, setDate] = useState(new Date());
-  const [isBestBefore, setIsBestBefore] = useState(true);
+  const [isBestBefore, setIsBestBefore] = useState(initBestBefore);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
@@ -59,6 +58,15 @@ const AddItem = ( props ) => {
     
   };
 
+  const closeModal = () => {
+    if (editMode) {
+      setText(initText);
+      setPortion(initPortion);
+      setIsBestBefore(initBestBefore);
+      setDate(new Date());
+    }
+    setModalVisibility();
+  };
 
   return (
     <Modal
@@ -71,7 +79,7 @@ const AddItem = ( props ) => {
 
           <View style={styles.header}>
             <TouchableOpacity
-              onPress={setModalVisibility}
+              onPress={closeModal}
               style={styles.backButton}
             >
               <Text>Close</Text>
