@@ -86,7 +86,7 @@ def get():
 
     # data = {"data": result}
     exp = [{'title':key, 'data':data[key]} for key in data ]
-    print(exp)
+    # print(exp)
 
     cursor.close()
     cnx.close()

@@ -3,10 +3,13 @@ import { Text, TouchableOpacity, StyleSheet, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Tabs from './component/Tabs';
 import AddItem from './component/AddItem';
+import APIUtils from './utilities/http-request-func';
 
 const Main = () => {
   const [showAdd, setShowAdd] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
+
+  API = new APIUtils('http://192.168.1.12:5000');
 
   return (
     <NavigationContainer>
@@ -19,6 +22,7 @@ const Main = () => {
       <AddItem
         init={modalVisible}
         setModalVisibility={()=>{setModalVisible(preState => preState = !preState)}}
+        api={API}
       />
       <Tabs showAdd={showAdd} setShowAdd={setShowAdd}/>
     </NavigationContainer>

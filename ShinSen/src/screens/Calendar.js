@@ -2,6 +2,7 @@ import { React, useCallback, useRef } from 'react';
 import isEmpty from 'lodash/isEmpty';
 import { CalendarProvider, AgendaList, ExpandableCalendar } from 'react-native-calendars';
 import AgendaItem from '../component/AgendaItem';
+import useGetItems from '../hooks/useGetItems';
 
 // const today = new Date().toISOString().split('T')[0];
 // const fastDate = getPastDate(5);
@@ -40,8 +41,10 @@ export const foodItems = [
     ],
   },
 ];
+`export const foodItems = useGetItems();
+console.log(foodItems);`
 const ITEMS = foodItems;
-console.log(ITEMS[0].data[0])
+console.log(ITEMS[0].data[0]);
 
 // ITEMS.forEach((item) => {
 
@@ -73,6 +76,9 @@ const Calendar = () => {
   }, []);
 
   const marked = useRef(getMarkedDates());
+
+  const foodItems = useGetItems();
+  console.log(foodItems);
 
   return (
     <CalendarProvider showTodayButton date={ITEMS[1]?.title}>
