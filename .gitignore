@@ -38,5 +38,7 @@ yarn-error.*
 env/
 API/.env
 
+nodeTest/
+
 # vscode
 .vscode/
