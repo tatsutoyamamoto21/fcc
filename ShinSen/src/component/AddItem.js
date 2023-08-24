@@ -14,7 +14,7 @@ import APIUtils from '../utilities/http-request-func';
 
 const AddItem = ( props ) => {
   const {init, initText, initPortion, initBestBefore,setModalVisibility, editMode, id} = props;
-  const api = new APIUtils('http://192.168.1.12:5000');
+  const api = new APIUtils('http://192.168.1.110:5000');
 
   const [text, setText] = useState(initText);
   const [portion, setPortion] = useState(initPortion);

@@ -1,4 +1,4 @@
-import { React, useCallback, useRef } from 'react';
+import { React, useCallback, useRef, useState, useEffect } from 'react';
 import isEmpty from 'lodash/isEmpty';
 import { CalendarProvider, AgendaList, ExpandableCalendar } from 'react-native-calendars';
 import AgendaItem from '../component/AgendaItem';
@@ -28,7 +28,7 @@ function getPastDate(numberOfDays) {
   return new Date(Date.now() - 864e5 * numberOfDays).toISOString().split('T')[0];
 }
 
-export const foodItems = [
+export const foodItemsNoMore = [
   {
     title: '2023-08-29',
     data: [{itemID: '1', itemName: 'Chicken', isBestBefore: true, expDate: '2023-08-29'}],
@@ -42,8 +42,18 @@ export const foodItems = [
   },
 ];
 
-const ITEMS = foodItems;
-console.log(ITEMS[0].data[0]);
+[
+  {
+    "data": [[Object], [Object], [Object], [Object]],
+    "title": "2023-08-22"
+  },
+  {
+    "data": [[Object]], 
+    "title": "2023-08-23"
+  }
+]
+
+let ITEMS = foodItemsNoMore;
 
 // ITEMS.forEach((item) => {
 
@@ -69,19 +79,43 @@ export const getMarkedDates = ( props ) => {
   return marked;
 };
 
-const Calendar = () => {
+const Calendar = ( props ) => {
+  const { foodItemsAPI } = props;
+  const [foodItems, setFoodItems] = useState(ITEMS);
+
+  console.log(foodItemsAPI[1]);
+
+  useEffect(() => {
+    if (!isEmpty(foodItemsAPI)) {
+      setFoodItems(foodItemsAPI);
+    };
+  }, [foodItemsAPI]);
+
+  console.log(foodItems[1].data[0].itemID);
+
+  const markednow = {};
+
+  foodItems.forEach((item) => {
+    // NOTE: only mark dates with data
+    if (item.data && item.data.length > 0 && !isEmpty(item.data[0])) {
+      markednow[item.title] = {marked: true};
+    } else {
+      markednow[item.title] = {disabled: true};
+    }
+  });
+
+  console.log(markednow);
+  const markednowref = useRef(markednow);
+
   const renderItem = useCallback(({item}) => {
     return <AgendaItem item={item}/>;
   }, []);
 
-  const marked = useRef(getMarkedDates());
-
-  const foodItems = useGetItems();
-  console.log(foodItems);
+  const marked = useRef(getMarkedDates(foodItems));
 
   return (
     <CalendarProvider showTodayButton date={ITEMS[1]?.title}>
-      <ExpandableCalendar markedDates={marked.current} />
+      <ExpandableCalendar markedDates={markednow} />
       <AgendaList
         sections={ITEMS}
         renderItem={renderItem}

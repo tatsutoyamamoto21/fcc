@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Text, TouchableOpacity, StyleSheet, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Tabs from './component/Tabs';
 import AddItem from './component/AddItem';
 import APIUtils from './utilities/http-request-func';
+import useGetItems from './hooks/useGetItems';
 
 const Main = () => {
   const [showAdd, setShowAdd] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
 
   API = new APIUtils('http://192.168.1.12:5000');
+
+  const foodItems = useGetItems();
+  // console.log(foodItems);
 
   return (
     <NavigationContainer>
@@ -24,7 +28,7 @@ const Main = () => {
         setModalVisibility={()=>{setModalVisible(preState => preState = !preState)}}
         api={API}
       />
-      <Tabs showAdd={showAdd} setShowAdd={setShowAdd}/>
+      <Tabs showAdd={showAdd} setShowAdd={setShowAdd} foodItems={foodItems}/>
     </NavigationContainer>
   );
 };
