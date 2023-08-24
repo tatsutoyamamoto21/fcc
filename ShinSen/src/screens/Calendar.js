@@ -41,8 +41,7 @@ export const foodItems = [
     ],
   },
 ];
-`export const foodItems = useGetItems();
-console.log(foodItems);`
+
 const ITEMS = foodItems;
 console.log(ITEMS[0].data[0]);
 
