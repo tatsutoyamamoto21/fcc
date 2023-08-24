@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { StyleSheet, Modal, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import AddItem from './AddItem';
 
-const width = Dimensions.get('window').width;
-
 const ItemInfo = ( props ) => {
   const { initModal, initText, initPortion, initBestBefore, setModalVisibility } = props;
   const [editVisible, setEditVisible] = useState(false);
@@ -15,8 +13,8 @@ const ItemInfo = ( props ) => {
 
   const deleteItem = () => {
     console.log('DELETE');
-    setModalVisibility()
-  }
+    setModalVisibility();
+  };
 
   return (
     <View>
@@ -27,7 +25,7 @@ const ItemInfo = ( props ) => {
       >
         <View style={styles.centerView}>
           <View style={styles.modalView}>
-            
+
             <View style={styles.header}>
               <TouchableOpacity
                 onPress={setModalVisibility}

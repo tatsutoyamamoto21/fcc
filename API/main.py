@@ -11,13 +11,14 @@ _pw = os.getenv('API_PW')
 
 app = Flask(__name__)
 
+
 def connect():
     """connects to the sql server
        returns the connection object"""
     try:
         # connection to the mysql server running on local host
         cnx = connector.connect(
-            host="localhost", database="MyDB", user="app-api",
+            host="localhost", database="MyDB", user="TatsAPI",
             password=_pw,
             )
         return cnx
@@ -30,7 +31,7 @@ def connect():
 def add():
     data = request.json
     print(data)
-    try :
+    try:
         name = data['ItemName']
         exp = data['ExpDate']
         best_before = data['IsBestBefore']
@@ -49,9 +50,8 @@ def add():
     cursor.close()
     cnx.close()
 
-
     return "ok", 200
-    
+
 
 @app.route("/get-all-data", methods=['GET'])
 def get():

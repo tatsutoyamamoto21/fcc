@@ -8,7 +8,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator()
 
-const Tabs = () => {
+const Tabs = ( props ) => {
+  const { foodItems } = props;
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -30,7 +32,7 @@ const Tabs = () => {
           ),
         }}
       >
-        {() => <Calendar />}
+        {() => <Calendar foodItemsAPI={foodItems}/>}
       </Tab.Screen>
       <Tab.Screen name={'Inventory'}
         options={{
