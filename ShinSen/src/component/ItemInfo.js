@@ -6,9 +6,6 @@ const ItemInfo = ( props ) => {
   const { initModal, initText, initPortion, initBestBefore, setModalVisibility } = props;
   const [editVisible, setEditVisible] = useState(false);
 
-  console.log('init text');
-  console.log(initText);
-
   const editItem = () => {
     setEditVisible(true);
     setModalVisibility();
