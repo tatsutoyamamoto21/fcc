@@ -38,8 +38,6 @@ const Calendar = ( props ) => {
   const [foodItems, setFoodItems] = useState(ITEMS);
   const [key, setKey] = useState(null)
 
-  console.log(foodItemsAPI);
-
   useEffect(() => {
     if (!isEmpty(foodItemsAPI)) {
       setFoodItems(JSON.parse(JSON.stringify(foodItemsAPI)));
