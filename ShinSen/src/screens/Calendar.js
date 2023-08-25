@@ -3,40 +3,18 @@ import isEmpty from 'lodash/isEmpty';
 import { CalendarProvider, AgendaList, ExpandableCalendar } from 'react-native-calendars';
 import AgendaItem from '../component/AgendaItem';
 
-const foodItemsNoMore = [
+const initFoodItems = [
   {
-    title: '2023-08-29',
-    data: [{itemID: '1', itemName: 'Chicken', isBestBefore: true, expDate: '2023-08-29'}],
-  },
-  {
-    title: '2023-08-30',
-    data: [
-      {itemID: '2', itemName: 'Eggs', isBestBefore: false, expDate: '2023-08-30'},
-      {itemID: '3', itemName: 'Milk', isBestBefore: true, expDate: '2023-08-30'},
-    ],
+    title: '2023-01-01',
+    data: [{itemID: '1', itemName: 'Admin', isBestBefore: true, expDate: '2023-01-01'}],
   },
 ];
 
-let ITEMS = foodItemsNoMore;
-
-export const getMarkedDates = ( props ) => {
-  const marked = {};
-
-  ITEMS.forEach((item) => {
-    // NOTE: only mark dates with data
-    if (item.data && item.data.length > 0 && !isEmpty(item.data[0])) {
-      marked[item.title] = {marked: true};
-    } else {
-      marked[item.title] = {disabled: true};
-    }
-  });
-  return marked;
-};
+let INIT_ITEMS = initFoodItems;
 
 const Calendar = ( props ) => {
   const { foodItemsAPI } = props;
-  const [foodItems, setFoodItems] = useState(ITEMS);
-  const [key, setKey] = useState(null)
+  const [foodItems, setFoodItems] = useState(INIT_ITEMS);
 
   useEffect(() => {
     if (!isEmpty(foodItemsAPI)) {
@@ -58,8 +36,6 @@ const Calendar = ( props ) => {
   const renderItem = useCallback(({item}) => {
     return <AgendaItem item={item}/>;
   }, []);
-
-  const marked = useRef(getMarkedDates(foodItems));
 
   return (
     <CalendarProvider showTodayButton date={foodItems[0]?.title}>
