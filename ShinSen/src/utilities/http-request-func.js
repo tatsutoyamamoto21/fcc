@@ -35,7 +35,7 @@ class APIUtils {
    * @param {Boolean} isBestBefore
    * @return {String} if success ok, else invalid request
    */
-  async addItem(itemName, expDate, isBestBefore) {
+  async addItem(itemName, expDate, isBestBefore, portion) {
     url = this.url + '/add-item';
     try {
       const response = await fetch(url, {
@@ -48,6 +48,7 @@ class APIUtils {
           ItemName: itemName,
           ExpDate: expDate,
           IsBestBefore: isBestBefore,
+          Portion: portion,
         }),
       });
       const data = await response.text();
