@@ -5,6 +5,7 @@ create table if not exists `fridge_1` (
     `ItemName` varchar(255),
     `ExpDate` date,
     `IsBestBefore` boolean default false,
+    `Portion` int default 1,
     constraint ItemID primary key (ItemID)
 );
 
