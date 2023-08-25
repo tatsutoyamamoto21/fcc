@@ -41,11 +41,11 @@ const AddItem = ( props ) => {
     setDate(new Date()),
     setIsBestBefore(true);
     if (editMode) {
-      api.editItem(id, text, date, isBestBefore, portion).then((res) => {
+      api.editItem(id, text, date.toISOString().split('T')[0], isBestBefore ? 1 : 0, portion).then((res) => {
         console.log(res);
       });
     } else {
-      api.addItem(text, date, isBestBefore, portion).then((res) => {
+      api.addItem(text, date.toISOString().split('T')[0], isBestBefore ? 1 : 0, portion).then((res) => {
         console.log(res);
       });
     }
