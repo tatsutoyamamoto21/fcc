@@ -41,7 +41,7 @@ const Tabs = ( props ) => {
           ),
         }}
       >
-        {() => <Inventory />}
+        {() => <Inventory foodItemsAPI={foodItems}/>}
       </Tab.Screen>
     </Tab.Navigator>
   );

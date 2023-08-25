@@ -36,6 +36,7 @@ export const getMarkedDates = ( props ) => {
 const Calendar = ( props ) => {
   const { foodItemsAPI } = props;
   const [foodItems, setFoodItems] = useState(ITEMS);
+  const [key, setKey] = useState(null)
 
   console.log(foodItemsAPI);
 

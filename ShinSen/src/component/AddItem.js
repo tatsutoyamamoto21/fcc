@@ -7,8 +7,10 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
+  NativeModules
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import Main from '../Main';
 import APIUtils from '../utilities/http-request-func';
 import { API_IP } from '@env';
 
@@ -49,6 +51,7 @@ const AddItem = ( props ) => {
         console.log(res);
       });
     }
+    NativeModules.DevSettings.reload();
   };
 
   const closeModal = () => {
