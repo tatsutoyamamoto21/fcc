@@ -28,7 +28,7 @@ function getPastDate(numberOfDays) {
   return new Date(Date.now() - 864e5 * numberOfDays).toISOString().split('T')[0];
 }
 
-export const foodItemsNoMore = [
+const foodItemsNoMore = [
   {
     title: '2023-08-29',
     data: [{itemID: '1', itemName: 'Chicken', isBestBefore: true, expDate: '2023-08-29'}],
@@ -91,7 +91,7 @@ const Calendar = ( props ) => {
     };
   }, [foodItemsAPI]);
 
-  console.log(foodItems[1].data[0].ItemName);
+  console.log(typeof(ITEMS[0].title));
 
   const markednow = {};
 
@@ -104,20 +104,21 @@ const Calendar = ( props ) => {
     }
   });
 
-  console.log(markednow);
   const markednowref = useRef(markednow);
 
   const renderItem = useCallback(({item}) => {
     return <AgendaItem item={item}/>;
   }, []);
+  
+  console.log(ITEMS);
 
   const marked = useRef(getMarkedDates(foodItems));
 
   return (
-    <CalendarProvider showTodayButton date={ITEMS[1]?.title}>
+    <CalendarProvider showTodayButton date={foodItems[0]?.title}>
       <ExpandableCalendar markedDates={markednow} />
       <AgendaList
-        sections={ITEMS}
+        sections={foodItems}
         renderItem={renderItem}
       />
     </CalendarProvider>
