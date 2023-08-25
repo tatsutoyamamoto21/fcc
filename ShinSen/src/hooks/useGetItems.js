@@ -1,10 +1,9 @@
 import {useEffect, useState} from 'react';
 import APIUtils from '../utilities/http-request-func';
-import { IP } from '@env';
+import { API_IP } from '@env';
 
 const useGetItems = () => {
-  console.log(IP)
-  const API = new APIUtils('http://'+IP+':5000');
+  const API = new APIUtils('http://'+API_IP+':5000');
   const [items, setItems] = useState([]);
 
   useEffect(() => {

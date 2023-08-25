@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import { Text, TouchableOpacity, StyleSheet, StatusBar } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Tabs from './component/Tabs';
 import AddItem from './component/AddItem';
 import APIUtils from './utilities/http-request-func';
 import useGetItems from './hooks/useGetItems';
-import { IP } from '@env';
+import { API_IP } from '@env';
 
 const Main = () => {
   const [showAdd, setShowAdd] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
 
-  API = new APIUtils('http://'+IP+':5000');
+  API = new APIUtils('http://'+API_IP+':5000');
 
   const foodItems = useGetItems();
-  // console.log(foodItems);
 
   return (
     <NavigationContainer>
@@ -56,6 +55,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 30,
   },
-})
+});
 
 export default Main;
