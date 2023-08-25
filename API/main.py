@@ -14,7 +14,9 @@ def connect():
     try:
         # connection to the mysql server running on local host
         cnx = connector.connect(
-            host="localhost", database="MyDB", user=_username,
+            host="localhost",
+            database="MyDB",
+            user=_username,
             password=_pw,
         )
         return cnx
@@ -28,10 +30,11 @@ def connect():
 def add():
     data = request.json
     print(data)
-    try :
-        name = data['ItemName']
-        exp = data['ExpDate']
-        best_before = data['IsBestBefore']
+    try:
+        name = data["ItemName"]
+        exp = data["ExpDate"]
+        best_before = data["IsBestBefore"]
+        portion = data["Portion"]
 
     except KeyError:
         return "invalid request", 400

@@ -87,11 +87,11 @@ const Calendar = ( props ) => {
 
   useEffect(() => {
     if (!isEmpty(foodItemsAPI)) {
-      setFoodItems(foodItemsAPI);
+      setFoodItems(JSON.parse(JSON.stringify(foodItemsAPI)));
     };
   }, [foodItemsAPI]);
 
-  console.log(foodItems[1].data[0].itemID);
+  console.log(foodItems[1].data[0].ItemName);
 
   const markednow = {};
 
