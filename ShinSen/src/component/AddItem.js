@@ -10,11 +10,12 @@ import {
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import APIUtils from '../utilities/http-request-func';
+import { IP } from '@env';
 
 
 const AddItem = ( props ) => {
   const {init, initText, initPortion, initBestBefore,setModalVisibility, editMode, id} = props;
-  const api = new APIUtils('http://192.168.1.110:5000');
+  const api = new APIUtils('http://'+IP+':5000');
 
   const [text, setText] = useState(initText);
   const [portion, setPortion] = useState(initPortion);
@@ -41,11 +42,11 @@ const AddItem = ( props ) => {
     setDate(new Date()),
     setIsBestBefore(true);
     if (editMode) {
-      api.editItem(id, text, date, isBestBefore).then((res) => {
+      api.editItem(id, text, date, isBestBefore, portion).then((res) => {
         console.log(res);
       });
     } else {
-      api.addItem(text, date, isBestBefore).then((res) => {
+      api.addItem(text, date, isBestBefore, portion).then((res) => {
         console.log(res);
       });
     }

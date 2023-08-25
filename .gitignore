@@ -37,6 +37,7 @@ yarn-error.*
 # python env
 env/
 API/.env
+ShinSen/.env
 
 nodeTest/
 

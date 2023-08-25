@@ -27,10 +27,10 @@ const AgendaItem = ( props ) => {
     <View>
       <TouchableOpacity onPress={itemPressed} style={styles.item}>
         <View style={styles.isBestBeforeContainer}>
-          <Text style={styles.isBestBeforeText}>{item.isBestBefore ? 'Best Before' : 'Use by'}</Text>
+          <Text style={styles.isBestBeforeText}>{item.IsBestBefore ? 'Best Before' : 'Use by'}</Text>
         </View>
         <View style={styles.itemNameContainer}>
-          <Text style={styles.itemNameText}>{item.itemName}</Text>
+          <Text style={styles.itemNameText}>{item.ItemName}</Text>
         </View>
         <View style={styles.itemButtonContainer}>
           <Button color={'grey'} title={'Info'} onPress={buttonPressed}/>
@@ -38,9 +38,9 @@ const AgendaItem = ( props ) => {
       </TouchableOpacity>
       <ItemInfo
         initModal={modalVisible}
-        initText={item.itemName}
+        initText={item.ItemName}
         initPortion={''}
-        initBestBefore={item.isBestBefore}
+        initBestBefore={item.IsBestBefore}
         setModalVisibility={()=>{setModalVisible(preState => preState = !preState)}}
       />
     </View>
